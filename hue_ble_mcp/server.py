@@ -7,10 +7,22 @@ Controls Philips Hue lights directly via Bluetooth LE — no bridge required.
 import json
 import os
 from struct import pack, unpack
+from typing import Annotated
 
 from bleak import BleakClient, BleakScanner
 from bleak.exc import BleakError
 from mcp.server.fastmcp import FastMCP
+from pydantic import BeforeValidator
+from pydantic.json_schema import WithJsonSchema
+
+# Accept int or string in the JSON schema, then coerce to int before validation.
+# Without WithJsonSchema, FastMCP emits {"type": "integer"} and the MCP client
+# rejects string values before they ever reach our Python code.
+CoercedInt = Annotated[
+    int,
+    BeforeValidator(lambda v: int(v)),
+    WithJsonSchema({"anyOf": [{"type": "integer"}, {"type": "string"}]}),
+]
 
 # ---------------------------------------------------------------------------
 # GATT Characteristic UUIDs (reverse engineered from Hue BLE protocol)
@@ -147,7 +159,7 @@ async def turn_off(address: str = "") -> str:
 
 
 @mcp.tool()
-async def set_brightness(brightness: int, address: str = "") -> str:
+async def set_brightness(brightness: CoercedInt, address: str = "") -> str:
     """
     Set the brightness of a Philips Hue light (turns it on if off).
 
@@ -170,7 +182,7 @@ async def set_brightness(brightness: int, address: str = "") -> str:
 
 
 @mcp.tool()
-async def set_color_temperature(kelvin: int, address: str = "") -> str:
+async def set_color_temperature(kelvin: CoercedInt, address: str = "") -> str:
     """
     Set the color temperature of a Philips Hue light.
     Switches the light to white/CT mode (disables any color).
@@ -198,7 +210,7 @@ async def set_color_temperature(kelvin: int, address: str = "") -> str:
 
 
 @mcp.tool()
-async def set_color(red: int, green: int, blue: int, address: str = "") -> str:
+async def set_color(red: CoercedInt, green: CoercedInt, blue: CoercedInt, address: str = "") -> str:
     """
     Set the color of a Philips Hue light using RGB values.
     Switches the light to color mode. Use set_color_temperature to go back to white mode.
