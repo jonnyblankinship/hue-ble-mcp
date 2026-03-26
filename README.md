@@ -1,3 +1,5 @@
+[//]: # (mcp-name: io.github.jonnyblankinship/hue-ble-mcp)
+
 # hue-ble-mcp
 
 An [MCP](https://modelcontextprotocol.io) server that lets Claude control **Philips Hue lights via Bluetooth LE** — no Hue Bridge or internet connection required.
