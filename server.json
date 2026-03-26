@@ -3,7 +3,7 @@
   "name": "io.github.jonnyblankinship/hue-ble-mcp",
   "title": "Hue BLE MCP",
   "description": "Control Philips Hue lights via Bluetooth LE — no bridge required.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "repository": {
     "url": "https://github.com/jonnyblankinship/hue-ble-mcp",
     "source": "github"
@@ -12,7 +12,7 @@
     {
       "registryType": "pypi",
       "identifier": "hue-ble-mcp",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "runtimeHint": "python",
       "transport": {
         "type": "stdio"
