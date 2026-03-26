@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.jonnyblankinship/hue-ble-mcp",
   "title": "Hue BLE MCP",
-  "description": "Control Philips Hue lights via Bluetooth LE without a bridge. Scan, turn on/off, set brightness, color, color temperature, and scenes — all from Claude.",
+  "description": "Control Philips Hue lights via Bluetooth LE — no bridge required.",
   "repository": {
     "url": "https://github.com/jonnyblankinship/hue-ble-mcp",
     "source": "github"
@@ -12,9 +12,9 @@
   },
   "packages": [
     {
-      "registry_type": "pypi",
-      "name": "hue-ble-mcp",
-      "version": "0.1.0",
+      "registryType": "pypi",
+      "identifier": "hue-ble-mcp",
+      "version": "0.1.1",
       "runtime_hint": "python",
       "runtime_arguments": ["-m", "hue_ble_mcp.server"]
     }
