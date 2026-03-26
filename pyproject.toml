@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "hue-ble-mcp"
-version = "0.1.1"
+version = "0.1.2"
 description = "MCP server to control Philips Hue lights via Bluetooth LE — no bridge required"
 readme = "README.md"
 license = { text = "MIT" }
